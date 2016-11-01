@@ -173,57 +173,11 @@ float angle = 0;
 //////////////////////////////////////////////////////////////////////////////////////////
 void cRenderClass::render( int pass )
 {
-	if( pass == 0 )
-	{
-		while( (angle++) >= 360.0f )
-			angle-=360.0f;
-
-		// disable shader program
-		glUseProgram(0);
-
-		// clear the back buffer
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		
-		// copy contents from my own buffer
-		glDrawPixels( m_sw, m_sh, GL_RGBA, GL_FLOAT, m_buffer );
-
-
-		/////////////////////////////////////////////////////////////
-		// draw to screen using OpenGL standard calls
-		/////////////////////////////////////////////////////////////
-		glTranslatef( 250, 250, 0 );
-		glRotatef( angle, 0,0,1 );
-		glScalef( 100, 100, 1 );
-
-		glBegin(GL_LINE_LOOP);
-			glColor3f( 1,1,1 );
-			glVertex2f( -1,-1 );
-			glVertex2f( 1, -1 );
-			glVertex2f( 1, 1 );
-			glVertex2f( -1, 1 );
-		glEnd();
-
-		/////////////////////////////////////////////////////////////
-		/////////////////////////////////////////////////////////////	
-		return;		
-	}
-	else
-	{
+	
 		// flatten the viewport - i.e. convert to image space
 		setViewport2D();
 
-		glEnable(GL_TEXTURE_2D);
-
-		glReadBuffer( GL_BACK );
-		glBindTexture( GL_TEXTURE_2D, m_tex[0] );
-		glCopyTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, 0, 0, m_sw, m_sh, 0 );
-
-		glBindTexture( GL_TEXTURE_2D, m_tex[0]);	
-		glDrawBuffer( GL_BACK );
-
-		// render selected texture map here..
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
+		
 
 		cShader *pList = ShaderInfo.getList();
 		int shdr = 0;
@@ -258,17 +212,11 @@ void cRenderClass::render( int pass )
 
 		glEnd();
 		
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture( GL_TEXTURE_2D, m_tex[0] );	
-		glDisable(GL_TEXTURE_2D);
-		glUseProgram( 0 );
-	}
+
 
 	// finally swap the buffers of the current window
 	glutSwapBuffers();
-	
-	// clear out the temp buffer
-	clear();
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////

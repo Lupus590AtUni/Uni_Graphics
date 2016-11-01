@@ -11,7 +11,7 @@ extern void update();
 const int SCREEN_WIDTH	= 500;
 const int SCREEN_HEIGHT = 500;
 
-const int PASSES		= 2;
+const int PASSES		= 1;
 
 typedef unsigned int	u32	;
 
