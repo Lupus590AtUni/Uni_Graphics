@@ -10,7 +10,7 @@ varying vec2 		texCoord;
 void main(void)
 {
 	vec3 colour;
-	if (texCoord.x > 0.5)
+	if ((texCoord.x > 0.25 && texCoord.x < 0.5) || texCoord.x > 0.75)
 	{
 		colour = vec3(1.0,0.0,0.0);
 	}
