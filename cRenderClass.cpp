@@ -206,7 +206,7 @@ void cRenderClass::render( int pass )
 			glColor3f(1.0,1.0,1.0);		
 
 				glTexCoord2f( 0.0f, 0.0f ); glVertex2f( 0+20,		0+20 );
-				glTexCoord2f( 0.0f, 1.0f ); glVertex2f( m_sw-20,		m_sh-20 );
+				glTexCoord2f( 1.0f, 1.0f ); glVertex2f( m_sw-20,		m_sh-20 );
 
 		glEnd();
 		
