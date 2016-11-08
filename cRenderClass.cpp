@@ -200,15 +200,13 @@ void cRenderClass::render( int pass )
 
 		glLineWidth(2);
 
-		glBegin(GL_QUADS);			
+		glBegin(GL_LINES);			
 
 			// render the final disordered image here..
 			glColor3f(1.0,1.0,1.0);		
 
-				glTexCoord2f( 0.0f, 0.0f ); glVertex2f( 0,		0 );
-				glTexCoord2f( 0.0f, 1.0f ); glVertex2f( 0,		m_sh );
-				glTexCoord2f( 1.0f, 1.0f ); glVertex2f( m_sw,	m_sh );
-				glTexCoord2f( 1.0f, 0.0f ); glVertex2f( m_sw,	0 );
+				glTexCoord2f( 0.0f, 0.0f ); glVertex2f( 0+20,		0+20 );
+				glTexCoord2f( 0.0f, 1.0f ); glVertex2f( m_sw-20,		m_sh-20 );
 
 		glEnd();
 		
