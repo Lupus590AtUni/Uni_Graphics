@@ -3,14 +3,16 @@
 // Digital Whorehouse Productions 2008
 
 uniform float		Intensity;
-uniform sampler2D	grabTexture;
+//uniform sampler2D	grabTexture;
 
 varying vec2 		texCoord;
 
 void main(void)
 {
 	vec3 colour;
-	if ((texCoord.x > 0.25 && texCoord.x < 0.5) || texCoord.x > 0.75)
+	int rem = int(mod( float(int(texCoord.x*10.0)), 10));
+
+	if( rem == 0 )
 	{
 		colour = vec3(1.0,0.0,0.0);
 	}

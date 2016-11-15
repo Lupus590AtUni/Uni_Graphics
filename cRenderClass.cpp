@@ -191,7 +191,7 @@ void cRenderClass::render( int pass )
 		// enable shader program..
 		glUseProgram( pList[shdr].program() );
 
-		float intensity = 0.25f;
+		float intensity = 4.0f;
 
 		glUniform1i( pList[shdr].get_grabLoc(),(int)m_tex[0] );
 		glUniform1f( pList[shdr].intensity(), intensity );
