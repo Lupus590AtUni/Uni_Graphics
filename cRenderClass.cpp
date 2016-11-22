@@ -237,7 +237,7 @@ void cRenderClass::render( int pass )
 		// enable shader program..
 		glUseProgram( pList[shdr].program() );
 
-		float intensity = 0.25f;
+		float intensity = 1.0f;
 
 		glUniform1i( pList[shdr].get_grabLoc(),(int)m_tex[0] );
 		glUniform1f( pList[shdr].intensity(), intensity );
@@ -251,10 +251,10 @@ void cRenderClass::render( int pass )
 			// render the final disordered image here..
 			glColor3f(1.0,1.0,1.0);		
 
-				glTexCoord2f( 0.0f, 0.0f ); glVertex2f( 0,		0 );
-				glTexCoord2f( 0.0f, 1.0f ); glVertex2f( 0,		m_sh );
-				glTexCoord2f( 1.0f, 1.0f ); glVertex2f( m_sw,	m_sh );
-				glTexCoord2f( 1.0f, 0.0f ); glVertex2f( m_sw,	0 );
+				glTexCoord2f( 0.0f, 0.0f ); glVertex2f( 10.0f,	10.0f );
+				glTexCoord2f( 0.0f, 1.0f ); glVertex2f( 10.0f,	200.0f );
+				glTexCoord2f( 1.0f, 1.0f ); glVertex2f( 200.0f,	200.0f );
+				glTexCoord2f( 1.0f, 0.0f ); glVertex2f( 200.0f,	10.0f );
 
 		glEnd();
 		
