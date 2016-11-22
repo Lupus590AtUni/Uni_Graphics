@@ -4,6 +4,8 @@ class cRenderClass
 {
 public:
 
+	int mousePosX, mousePosY;
+
 	cRenderClass(const int, const int);
 	~cRenderClass();
 
@@ -32,7 +34,7 @@ public:
 	class cShaderInfo	ShaderInfo;
 
 private:
-
+	
 	int		 m_sw, m_sh;
 	int		 m_point_size;
 	float	*m_buffer;

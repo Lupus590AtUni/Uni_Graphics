@@ -4,6 +4,7 @@
 extern void winReshapeFunc(GLint w, GLint h);
 extern void renderScene();
 extern void update();
+extern void mousePos(int x, int y);
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // constants 

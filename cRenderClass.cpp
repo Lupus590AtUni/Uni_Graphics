@@ -107,6 +107,9 @@ void cRenderClass::create(int argc, _TCHAR* argv[])
 	// set display callback for current window
 	glutDisplayFunc(renderScene);	
 
+	glutMotionFunc(mousePos);
+	glutPassiveMotionFunc(mousePos);
+
 	// set up the global idle callback
 	glutIdleFunc(update);
 
@@ -246,21 +249,38 @@ void cRenderClass::render( int pass )
 
 		glLineWidth(2);
 
+		float size = 200.0f;
+		float posX = mousePosX-size/2;
+		float posY = -mousePosY+ SCREEN_HEIGHT/2 + size / 2 + 50.0f;
+
 		glBegin(GL_QUADS);			
 
 			// render the final disordered image here..
 			glColor3f(1.0,1.0,1.0);		
 
-				glTexCoord2f( 0.0f, 0.0f ); glVertex2f( 10.0f,	10.0f );
-				glTexCoord2f( 0.0f, 1.0f ); glVertex2f( 10.0f,	200.0f );
-				glTexCoord2f( 1.0f, 1.0f ); glVertex2f( 200.0f,	200.0f );
-				glTexCoord2f( 1.0f, 0.0f ); glVertex2f( 200.0f,	10.0f );
+			glTexCoord2f( 0.0f, 0.0f ); glVertex2f( posX,	posY );
+			glTexCoord2f( 0.0f, 1.0f ); glVertex2f( posX,	posY + size );
+			glTexCoord2f( 1.0f, 1.0f ); glVertex2f(posX + size, posY + size);
+			glTexCoord2f( 1.0f, 0.0f ); glVertex2f(posX + size,	posY );
 
 		glEnd();
 		
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture( GL_TEXTURE_2D, m_tex[0] );	
 		glDisable(GL_TEXTURE_2D);
+
+		glBegin(GL_LINES);
+
+			// render the final disordered image here..
+			glColor3f(1.0, 1.0, 1.0);
+
+			glVertex2f(posX, posY);
+			glVertex2f(posX, posY + size);
+			glVertex2f(posX + size, posY + size);
+			glVertex2f(posX + size, posY);
+
+		glEnd();
+
 		glUseProgram( 0 );
 	}
 
@@ -304,4 +324,10 @@ void winReshapeFunc(GLint w, GLint h)
 		(GLsizei) SCREEN_WIDTH,	// viewport width
 		(GLsizei) SCREEN_HEIGHT	// viewport height
 	);
+}
+
+void mousePos(int x, int y)
+{
+	graphics.mousePosX = x;
+	graphics.mousePosY = y;
 }
