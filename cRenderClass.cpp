@@ -175,8 +175,9 @@ void cRenderClass::render( int pass )
 {
 	if( pass == 0 )
 	{
-		while( (angle++) >= 360.0f )
-			angle-=360.0f;
+		//while( (angle++) >= 360.0f )
+		//	angle-=360.0f;
+		angle = 50.0f;
 
 		// disable shader program
 		glUseProgram(0);

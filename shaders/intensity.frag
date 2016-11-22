@@ -10,9 +10,38 @@ varying vec2 		texCoord;
 void main(void)
 {
 
-	vec4	grab = vec4(texture2D(grabTexture, texCoord.xy));
+	
 
-	vec3	colour = vec3(grab.xyz * Intensity);
+	
+	vec4 sumColour = vec4(0.0);
+
+	//convert to pixel space to get neigbour pixels
+	vec2 neighbourCoord = vec2(texCoord * 500.0);
+
+	neighbourCoord += vec2(-1.0,0.0);
+	sumColour += vec4(texture2D(grabTexture, neighbourCoord.xy/vec2(500.0)));//revert to texture space
+	neighbourCoord += vec2(-1.0,-1.0);
+	sumColour += vec4(texture2D(grabTexture, neighbourCoord.xy/vec2(500.0)));//revert to texture space
+	neighbourCoord += vec2(0.0,-1.0);
+	sumColour += vec4(texture2D(grabTexture, neighbourCoord.xy/vec2(500.0)));//revert to texture space
+	neighbourCoord += vec2(0.0,0.0);
+	sumColour += vec4(texture2D(grabTexture, neighbourCoord.xy/vec2(500.0)));//revert to texture space
+	neighbourCoord += vec2(1.0,-1.0);
+	sumColour += vec4(texture2D(grabTexture, neighbourCoord.xy/vec2(500.0)));//revert to texture space
+	neighbourCoord += vec2(1.0,0.0);
+	sumColour += vec4(texture2D(grabTexture, neighbourCoord.xy/vec2(500.0)));//revert to texture space
+	neighbourCoord += vec2(1.0,1.0);
+	sumColour += vec4(texture2D(grabTexture, neighbourCoord.xy/vec2(500.0)));//revert to texture space
+	neighbourCoord += vec2(1.0,0.0);
+	sumColour += vec4(texture2D(grabTexture, neighbourCoord.xy/vec2(500.0)));//revert to texture space
+	neighbourCoord += vec2(1.0,-1.0);
+	sumColour += vec4(texture2D(grabTexture, neighbourCoord.xy/vec2(500.0)));//revert to texture space
+
+	vec4 colour = vec4(sumColour/9.0);
+
+
+	//colour = vec4(1.0,0.0,0.0,0.0);
+
 
 
 	gl_FragColor = vec4( vec3(colour), 1.0 );
