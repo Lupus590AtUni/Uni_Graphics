@@ -19,6 +19,10 @@
 #include "globals.h"
 #include "cShader.h"
 #include "cRenderClass.h"
+#include "NA_light.h"
+#include "NA_MathsLib.h"
+#include "NA_Matrix.h"
+#include "NA_Vector.h"
 
 
 
