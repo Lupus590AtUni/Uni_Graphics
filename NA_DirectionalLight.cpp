@@ -4,7 +4,6 @@
 
 NA_DirectionalLight::NA_DirectionalLight()
 {
-	angle = 10.0f;
 	intensity = 10.0f;
 }
 

@@ -5,8 +5,6 @@ class NA_DirectionalLight
 //private:
 public:
 	NA_Vector facing;
-	NA_Vector position;
-	float angle;
 	float intensity;
 public:
 	NA_DirectionalLight();
