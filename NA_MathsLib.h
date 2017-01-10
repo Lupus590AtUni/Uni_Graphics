@@ -1,4 +1,5 @@
 #pragma once
+#include <time.h>
 class NA_MathsLib
 {
 private:
